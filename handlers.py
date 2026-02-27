@@ -2,7 +2,6 @@ import aiosqlite
 import asyncio
 import logging
 import os
-from dotenv import load_dotenv
 from aiogram import Router, F, Bot
 from aiogram.filters import Command, CommandStart
 from aiogram.types import Message, CallbackQuery, InlineKeyboardButton, ReplyKeyboardRemove
@@ -14,11 +13,7 @@ from states import Registration, CreateVacancy, JobAction, EditProfile
 from keyboards import *
 import utils
 
-load_dotenv()
-
-ADMIN_IDS = [int(x) for x in os.getenv("ADMIN_IDS", "").split(",") if x]
-CHANNEL_ID = int(os.getenv("CHANNEL_ID", 0))
-LOG_CHANNEL_ID = int(os.getenv("LOG_CHANNEL_ID", 0))
+from bot import TOKEN, ADMIN_IDS, CHANNEL_ID, LOG_CHANNEL_ID
 
 user_router = Router()
 admin_router = Router()
